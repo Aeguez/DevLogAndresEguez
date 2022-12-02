@@ -152,11 +152,11 @@ namespace Chess
                     break;
 
                 case "Rook":
-                    Console.WriteLine("A rook moves any number of vacant squares horizontally or verticallyl.");
+                    Console.WriteLine("A rook moves any number of vacant squares horizontally or vertically.");
                     break;
 
                 case "Bishop":
-                    Console.WriteLine("Bishops can move only diagonal. Every bishop is confined to half of the board, as it can move only on its respective light or dark squares. . It cannot hop over other pieces like a knight");
+                    Console.WriteLine("Bishops can move only diagonal. Every bishop is confined to half of the board, as it can move only on its respective light or dark squares. It cannot hop over other pieces like a knight");
                     break;
 
                 case "Queen":
@@ -216,11 +216,11 @@ namespace Chess
                     break;
 
                 case "Rook":
-                    Console.WriteLine("A rook moves any number of vacant squares horizontally or verticallyl.");
+                    Console.WriteLine("A rook moves any number of vacant squares horizontally or vertically.");
                     break;
 
                 case "Bishop":
-                    Console.WriteLine("Bishops can move only diagonal. Every bishop is confined to half of the board, as it can move only on its respective light or dark squares. . It cannot hop over other pieces like a knight");
+                    Console.WriteLine("Bishops can move only diagonal. Every bishop is confined to half of the board, as it can move only on its respective light or dark squares. It cannot hop over other pieces like a knight");
                     break;
 
                 case "Queen":

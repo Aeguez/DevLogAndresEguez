@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3NKEh+VKNnpAq/F63d06N39Y7TnTV5gVUXJek5nRUtx+vemkQOwtzbe7TkodslXjqX+2KG8DqWfRuBixMTxqcw==",
+  "dgSpecHash": "ZlzusvXiCv06PZRSxt0hr3j9wH8CiF2GtZsQkDBY7E3L5TgVeDWH1F2eOhlzH9bYvYfzCq/cezotcYbyDE64nw==",
   "success": true,
-  "projectFilePath": "C:\\repos\\C#\\ChessGame3\\DevLogAndresEguez\\ChessGame.csproj",
+  "projectFilePath": "C:\\Users\\myjee\\Csharp\\DevLogAndresEguez\\ChessGame.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
