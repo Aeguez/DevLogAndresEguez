@@ -1,0 +1,5 @@
+C:\Users\myjee\Csharp\DevLogAndresEguez\obj\Debug\net5.0\ChessGame.csproj.AssemblyReference.cache
+C:\Users\myjee\Csharp\DevLogAndresEguez\obj\Debug\net5.0\ChessGame.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\myjee\Csharp\DevLogAndresEguez\obj\Debug\net5.0\ChessGame.AssemblyInfoInputs.cache
+C:\Users\myjee\Csharp\DevLogAndresEguez\obj\Debug\net5.0\ChessGame.AssemblyInfo.cs
+C:\Users\myjee\Csharp\DevLogAndresEguez\obj\Debug\net5.0\ChessGame.csproj.CoreCompileInputs.cache
