@@ -36,20 +36,21 @@ using ChessBoard;
 
 namespace Chess
 {
-partial class Program
+    partial class Program
     {
 
- static void SpecialMoves()
+        static void SpecialMoves()
         {
+
             Console.WriteLine("Special Moves: ");
             Console.WriteLine("In order to win, you nedd to place your oponnet's king in checkmate. Checkmate is when your oponnents' king cannot move legally to protect himself from the other piece.");
             Console.WriteLine("Stalemate: If a players turn to move he is not in check but has not legal moves. This is called Stalemate and ends the game in a tie.");
             Console.WriteLine("Pawn promotion: This i when a pawn reaches the back of the other teams side and can become either queen, rook, bishop, or kight (whatever the player chooses).");
-      }
-
+        }
 
         static void Main()
         {
+
             {
                 Board myBoard = new Board(8);
                 Debug.Assert(myBoard.Size == 8);
@@ -76,6 +77,33 @@ partial class Program
 
 
             Console.WriteLine("All tests passed.");
+
+            const string top = " -----------------";
+
+            //init chessboard
+            Board.chessboard = new bool[Board.size, Board.size];
+
+            //place a figure on field 4/6 for demonstration
+            Board.chessboard[4, 6] = true;
+
+            for (int y = 0; y < Board.size; y++)
+            {
+                Console.WriteLine(" {0}", top);
+                Console.Write("{0} ", Board.size - y);
+                for (int x = 0; x < Board.size; x++)
+                {
+                    Console.Write("|{0}", Board.chessboard[x, y] ? 'X' : ' ');
+                }
+                Console.WriteLine("|");
+            }
+
+            Console.Write("   ");
+            for (int i = 0; i < Board.size; i++)
+            {
+                Console.Write("{0} ", Board.letters[i]);
+            }
+            Console.ReadKey();
+
 
             {
                 Board myBoard = new Board(8);
