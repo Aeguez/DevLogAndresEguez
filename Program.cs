@@ -116,18 +116,18 @@ namespace Chess
 
                             if (c.CurrentlyOccupied == true)
                             {
-                                Console.Write("|X");
+                                Console.Write("| X");
                             }
                             else if (c.LegalNextMove == true)
                             {
-                                Console.Write("|+");
+                                Console.Write("| +");
                             }
                             else
                             {
-                                Console.Write("| ");
+                                Console.Write("|  ");
                             }
                         }
-                    Console.WriteLine("\n________________");
+                    Console.WriteLine("\n________________________");
 
                     }
 
