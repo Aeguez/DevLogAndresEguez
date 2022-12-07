@@ -97,6 +97,13 @@ namespace Chess
 
                     Console.ReadLine();
                 }
+                myBoard.initalizboard();
+                Drawboard(myBoard);
+                Console.ReadKey();
+                myBoard.Movepiece();
+                Console.ReadKey();
+
+                //////////////////////////////Functions that need to be moved///////////////////////////////////////////////////
                 static void printBoard(Board myBoard)
                 {
                     /*  for (int i = 0; i < 10; ++i)
@@ -112,7 +119,7 @@ namespace Chess
                     {
                         for (int j = 0; j < myBoard.Size; j++)
                         {
-                            Cell c = myBoard.theGrid[i,j];
+                            Cell c = myBoard.theGrid[i, j];
 
                             if (c.CurrentlyOccupied == true)
                             {
@@ -127,11 +134,39 @@ namespace Chess
                                 Console.Write("|  ");
                             }
                         }
-                    Console.WriteLine("\n________________________");
+                        Console.WriteLine("\n________________________");
 
                     }
 
                 }
+            }
+        }
+
+        static void Drawboard(Board myBoard)
+        {
+            for (int i = 0; i < myBoard.Size; i++)
+            {
+                for (int j = 0; j < myBoard.Size; j++)
+                {
+                    Cell c = myBoard.theGrid[i, j];
+                    if (c.CurrentPeice == "King")
+                        Console.Write("| K");
+                    if (c.CurrentPeice == "Rook")
+                        Console.Write("| R");
+                    if (c.CurrentPeice == "Pawn")
+                        Console.Write("| P");
+                    if (c.CurrentPeice == "Bishop")
+                        Console.Write("| C");
+                    if (c.CurrentPeice == "Queen")
+                        Console.Write("| Q");
+                    if (c.CurrentPeice == "Knight")
+                        Console.Write("| H");
+                    if(c.CurrentPeice=="")
+                    {
+                        Console.Write("|  ");
+                    }
+                }
+                Console.WriteLine("\n________________________");
             }
         }
     }
