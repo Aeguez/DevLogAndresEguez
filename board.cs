@@ -1242,7 +1242,7 @@ namespace ChessBoard
                 string NewuserimputColumn = Console.ReadLine();
                 if (isValidMove(theGrid[Convert.ToInt32(userimputRow), Convert.ToInt32(userimputColumn)], theGrid[Convert.ToInt32(NewuserimputRow), Convert.ToInt32(NewuserimputColumn)]))
                 {
-                    //is cell ocupied
+                 // if (Cell CurrentlyOccupied)  //is cell ocupied
                     //is other team
                     // move peice to location
                     //clear old location

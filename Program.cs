@@ -156,7 +156,7 @@ namespace Chess
                     if (c.CurrentPeice == "Pawn")
                         Console.Write("| P");
                     if (c.CurrentPeice == "Bishop")
-                        Console.Write("| C");
+                        Console.Write("| B");
                     if (c.CurrentPeice == "Queen")
                         Console.Write("| Q");
                     if (c.CurrentPeice == "Knight")
