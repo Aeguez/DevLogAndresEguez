@@ -123,7 +123,6 @@ namespace Chess
                         Console.ReadKey();
 
                     }
-
                 }
             }
             //////////////////////////////Functions that need to be moved///////////////////////////////////////////////////
