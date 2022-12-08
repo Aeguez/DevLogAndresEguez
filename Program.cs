@@ -104,7 +104,7 @@ namespace Chess
                     Drawboard(myBoard);
                     Console.ReadKey();
                     myBoard.Movepiece(player);
-                    //Drawboard(myBoard);
+                    Drawboard(myBoard);
                     Console.ReadKey();
 
                     if (player == "White")
@@ -172,6 +172,16 @@ namespace Chess
                 for (int j = 0; j < myBoard.Size; j++)
                 {
                     Cell c = myBoard.theGrid[i, j];
+                  /*  if(c.TeamColor=="Black")
+                    {
+                        Console.ForegroundColor=ConsoleColor.DarkBlue;
+                    
+                    }
+                    else if (c.TeamColor=="White")
+                    {
+
+                    }*/
+
                     if (c.CurrentPeice == "King")
                         Console.Write("| K");
                     if (c.CurrentPeice == "Rook")
@@ -187,6 +197,7 @@ namespace Chess
                     if (c.CurrentPeice == "")
                     {
                         Console.Write("|  ");
+                    
                     }
                 }
                 Console.WriteLine($"| {i + 1}\n________________________");
