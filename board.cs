@@ -1233,18 +1233,34 @@ namespace ChessBoard
 
             Console.WriteLine("choose your current pieces Column number");
             string userimputColumn = Console.ReadLine();
-            if (theGrid[Convert.ToInt32(userimputRow), Convert.ToInt32(userimputColumn)].CurrentPeice != "") ;
+            if (theGrid[Convert.ToInt32(userimputRow)-1, Convert.ToInt32(userimputColumn)-1].CurrentPeice != "") ;
             {
-                if (theGrid[Convert.ToInt32(userimputRow), Convert.ToInt32(userimputColumn)].TeamColor == "White") ;
+                if (theGrid[Convert.ToInt32(userimputRow)-1, Convert.ToInt32(userimputColumn)-1].TeamColor == "White") ;
                 Console.WriteLine("choose your new row number");
                 string NewuserimputRow = Console.ReadLine();
                 Console.WriteLine("choose your new Column number");
                 string NewuserimputColumn = Console.ReadLine();
-                if (isValidMove(theGrid[Convert.ToInt32(userimputRow), Convert.ToInt32(userimputColumn)], theGrid[Convert.ToInt32(NewuserimputRow), Convert.ToInt32(NewuserimputColumn)]))
+                if (isValidMove(theGrid[Convert.ToInt32(userimputRow)-1, Convert.ToInt32(userimputColumn)-1], theGrid[Convert.ToInt32(NewuserimputRow)-1, Convert.ToInt32(NewuserimputColumn)-1]))
                 {
-                 // if (Cell CurrentlyOccupied)  //is cell ocupied
+                    if (theGrid[Convert.ToInt32(NewuserimputRow)-1, Convert.ToInt32(NewuserimputColumn)-1].CurrentPeice == "")
+                    {
+                        theGrid[Convert.ToInt32(NewuserimputRow)-1, Convert.ToInt32(NewuserimputColumn)-1] = new Cell(Convert.ToInt32(NewuserimputRow)-1, Convert.ToInt32(NewuserimputColumn)-1, theGrid[Convert.ToInt32(userimputRow)-1, Convert.ToInt32(userimputColumn)-1].CurrentPeice, theGrid[Convert.ToInt32(userimputRow)-1, Convert.ToInt32(userimputColumn)-1].TeamColor);
+                        theGrid[Convert.ToInt32(userimputRow)-1, Convert.ToInt32(userimputColumn)-1] = new Cell(Convert.ToInt32(userimputRow)-1, Convert.ToInt32(userimputColumn)-1, "", "");
+
+
+                    }
+                    else if (theGrid[Convert.ToInt32(NewuserimputRow)-1, Convert.ToInt32(NewuserimputColumn)-1].TeamColor != theGrid[Convert.ToInt32(userimputRow)-1, Convert.ToInt32(userimputColumn)-1].TeamColor)
+                    { //to do put removed piece in a list 
+                        theGrid[Convert.ToInt32(NewuserimputRow)-1, Convert.ToInt32(NewuserimputColumn)-1] = new Cell(Convert.ToInt32(NewuserimputRow)-1, Convert.ToInt32(NewuserimputColumn)-1, theGrid[Convert.ToInt32(userimputRow)-1, Convert.ToInt32(userimputColumn)-1].CurrentPeice, theGrid[Convert.ToInt32(userimputRow)-1, Convert.ToInt32(userimputColumn)-1].TeamColor);
+
+                        theGrid[Convert.ToInt32(userimputRow)-1, Convert.ToInt32(userimputColumn)-1] = new Cell(Convert.ToInt32(userimputRow)-1, Convert.ToInt32(userimputColumn)-1, "", "");
+
+
+                    } //is cell ocupied
+
                     //is other team
                     // move peice to location
+                    //conumes attacked piece
                     //clear old location
 
                 }
@@ -1285,593 +1301,599 @@ namespace ChessBoard
                     {
                         return true;
                     }
+                }
+                if (startLocation.CurrentPeice == "Knight")
+                {
 
-                    if (startLocation.CurrentPeice == "Knight")
+                    if ((startLocation.RowNumber - 2 == endLocation.RowNumber && startLocation.ColumnNumber + 1 == endLocation.ColumnNumber))
                     {
-
-                        if ((startLocation.RowNumber - 2 == endLocation.RowNumber && startLocation.ColumnNumber + 1 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-
-                        if ((startLocation.RowNumber - 2 == endLocation.RowNumber && startLocation.ColumnNumber - 1 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-
-                        if ((startLocation.RowNumber + 2 == endLocation.RowNumber && startLocation.ColumnNumber + 1 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-
-                        if ((startLocation.RowNumber + 2 == endLocation.RowNumber && startLocation.ColumnNumber - 1 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-
-                        if ((startLocation.RowNumber + 1 == endLocation.RowNumber && startLocation.ColumnNumber + 2 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-
-                        if ((startLocation.RowNumber + 1 == endLocation.RowNumber && startLocation.ColumnNumber - 2 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-
-                        if ((startLocation.RowNumber - 1 == endLocation.RowNumber && startLocation.ColumnNumber + 2 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-
-                        if ((startLocation.RowNumber - 1 == endLocation.RowNumber && startLocation.ColumnNumber - 2 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
+                        return true;
                     }
 
-                    if (startLocation.CurrentPeice == "Rook")
+                    if ((startLocation.RowNumber - 2 == endLocation.RowNumber && startLocation.ColumnNumber - 1 == endLocation.ColumnNumber))
                     {
-
-                        if ((startLocation.RowNumber - 1 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 2 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 3 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 4 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 5 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 6 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 7 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 8 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 1 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 2 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 3 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 4 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 5 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 6 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 7 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
-                        {
-                            return true;
-
-                        }
-                        if ((startLocation.RowNumber + 8 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber - 1 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber - 2 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber - 3 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber - 4 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber - 5 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber - 6 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber - 7 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber - 8 == startLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber + 1 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber + 2 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber + 3 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber + 4 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber + 5 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber + 6 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber + 7 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber + 8 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
+                        return true;
                     }
 
-                    if (startLocation.CurrentPeice == "Bishop")
+                    if ((startLocation.RowNumber + 2 == endLocation.RowNumber && startLocation.ColumnNumber + 1 == endLocation.ColumnNumber))
                     {
-                        if ((startLocation.RowNumber + 1 == endLocation.RowNumber && startLocation.ColumnNumber + 1 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 2 == endLocation.RowNumber && startLocation.ColumnNumber + 2 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 3 == endLocation.RowNumber && startLocation.ColumnNumber + 3 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 4 == endLocation.RowNumber && startLocation.ColumnNumber + 4 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 5 == endLocation.RowNumber && endLocation.ColumnNumber == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 6 == endLocation.RowNumber && startLocation.ColumnNumber + 6 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 7 == endLocation.RowNumber && startLocation.ColumnNumber + 7 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 8 == endLocation.RowNumber && startLocation.ColumnNumber + 8 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 1 == endLocation.RowNumber && startLocation.ColumnNumber - 1 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 2 == endLocation.RowNumber && startLocation.ColumnNumber - 2 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 3 == endLocation.RowNumber && startLocation.ColumnNumber - 3 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 4 == endLocation.RowNumber && startLocation.ColumnNumber - 4 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 5 == endLocation.RowNumber && startLocation.ColumnNumber - 5 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 6 == endLocation.RowNumber && startLocation.ColumnNumber - 6 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 7 == endLocation.RowNumber && startLocation.ColumnNumber - 7 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 8 == endLocation.RowNumber && startLocation.ColumnNumber - 8 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 1 == endLocation.RowNumber && startLocation.ColumnNumber + 1 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 2 == endLocation.RowNumber && startLocation.ColumnNumber + 2 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 3 == endLocation.RowNumber && startLocation.ColumnNumber + 3 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 4 == endLocation.RowNumber && startLocation.ColumnNumber + 4 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 5 == endLocation.RowNumber && startLocation.ColumnNumber + 5 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 6 == endLocation.RowNumber && startLocation.ColumnNumber + 6 == endLocation.ColumnNumber))
-                        {
-                            return true;
-
-                        }
-                        if ((startLocation.RowNumber - 7 == endLocation.RowNumber && startLocation.ColumnNumber + 7 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 8 == endLocation.RowNumber && startLocation.ColumnNumber + 8 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 1 == endLocation.RowNumber && startLocation.ColumnNumber - 1 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 2 == endLocation.RowNumber && startLocation.ColumnNumber - 2 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 3 == endLocation.RowNumber && startLocation.ColumnNumber - 3 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 4 == endLocation.RowNumber && startLocation.ColumnNumber - 4 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 5 == endLocation.RowNumber && startLocation.ColumnNumber - 5 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 6 == endLocation.RowNumber && startLocation.ColumnNumber - 6 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 7 == endLocation.RowNumber && startLocation.ColumnNumber - 7 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 8 == endLocation.RowNumber && startLocation.ColumnNumber - 8 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-
+                        return true;
                     }
-                    if (startLocation.CurrentPeice == "Queen")
+
+                    if ((startLocation.RowNumber + 2 == endLocation.RowNumber && startLocation.ColumnNumber - 1 == endLocation.ColumnNumber))
                     {
-
-                        if ((startLocation.RowNumber + 1 == endLocation.RowNumber && startLocation.ColumnNumber + 1 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 2 == endLocation.RowNumber && startLocation.ColumnNumber + 2 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 3 == endLocation.RowNumber && startLocation.ColumnNumber + 3 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 4 == endLocation.RowNumber && startLocation.ColumnNumber + 4 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 5 == endLocation.RowNumber && endLocation.ColumnNumber == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 6 == endLocation.RowNumber && startLocation.ColumnNumber + 6 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 7 == endLocation.RowNumber && startLocation.ColumnNumber + 7 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 8 == endLocation.RowNumber && startLocation.ColumnNumber + 8 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 1 == endLocation.RowNumber && startLocation.ColumnNumber - 1 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 2 == endLocation.RowNumber && startLocation.ColumnNumber - 2 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 3 == endLocation.RowNumber && startLocation.ColumnNumber - 3 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 4 == endLocation.RowNumber && startLocation.ColumnNumber - 4 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 5 == endLocation.RowNumber && startLocation.ColumnNumber - 5 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 6 == endLocation.RowNumber && startLocation.ColumnNumber - 6 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 7 == endLocation.RowNumber && startLocation.ColumnNumber - 7 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 8 == endLocation.RowNumber && startLocation.ColumnNumber - 8 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 1 == endLocation.RowNumber && startLocation.ColumnNumber + 1 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 2 == endLocation.RowNumber && startLocation.ColumnNumber + 2 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 3 == endLocation.RowNumber && startLocation.ColumnNumber + 3 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 4 == endLocation.RowNumber && startLocation.ColumnNumber + 4 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 5 == endLocation.RowNumber && startLocation.ColumnNumber + 5 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 6 == endLocation.RowNumber && startLocation.ColumnNumber + 6 == endLocation.ColumnNumber))
-                        {
-                            return true;
-
-                        }
-                        if ((startLocation.RowNumber - 7 == endLocation.RowNumber && startLocation.ColumnNumber + 7 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 8 == endLocation.RowNumber && startLocation.ColumnNumber + 8 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 1 == endLocation.RowNumber && startLocation.ColumnNumber - 1 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 2 == endLocation.RowNumber && startLocation.ColumnNumber - 2 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 3 == endLocation.RowNumber && startLocation.ColumnNumber - 3 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 4 == endLocation.RowNumber && startLocation.ColumnNumber - 4 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 5 == endLocation.RowNumber && startLocation.ColumnNumber - 5 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 6 == endLocation.RowNumber && startLocation.ColumnNumber - 6 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 7 == endLocation.RowNumber && startLocation.ColumnNumber - 7 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 8 == endLocation.RowNumber && startLocation.ColumnNumber - 8 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 1 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 2 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 3 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 4 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 5 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 6 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 7 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber - 8 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 1 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 2 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 3 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 4 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 5 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 6 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber + 7 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
-                        {
-                            return true;
-
-                        }
-                        if ((startLocation.RowNumber + 8 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber - 1 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber - 2 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber - 3 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber - 4 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber - 5 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber - 6 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber - 7 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber - 8 == startLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber + 1 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber + 2 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber + 3 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber + 4 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber + 5 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber + 6 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber + 7 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
-                        if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber + 8 == endLocation.ColumnNumber))
-                        {
-                            return true;
-                        }
+                        return true;
                     }
-                    if (startLocation.CurrentPeice == "Pawn"){
-                        
-                            if ((startLocation.RowNumber + 1 == endLocation.RowNumber  && startLocation.ColumnNumber == endLocation.ColumnNumber ))
-{
-    return true;
-}                    }
 
+                    if ((startLocation.RowNumber + 1 == endLocation.RowNumber && startLocation.ColumnNumber + 2 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
 
+                    if ((startLocation.RowNumber + 1 == endLocation.RowNumber && startLocation.ColumnNumber - 2 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+
+                    if ((startLocation.RowNumber - 1 == endLocation.RowNumber && startLocation.ColumnNumber + 2 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+
+                    if ((startLocation.RowNumber - 1 == endLocation.RowNumber && startLocation.ColumnNumber - 2 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
                 }
 
-                return false;
+                if (startLocation.CurrentPeice == "Rook")
+                {
+
+                    if ((startLocation.RowNumber - 1 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 2 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 3 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 4 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 5 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 6 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 7 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 8 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 1 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 2 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 3 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 4 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 5 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 6 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 7 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+
+                    }
+                    if ((startLocation.RowNumber + 8 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber - 1 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber - 2 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber - 3 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber - 4 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber - 5 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber - 6 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber - 7 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber - 8 == startLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber + 1 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber + 2 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber + 3 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber + 4 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber + 5 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber + 6 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber + 7 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber + 8 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                }
+
+                if (startLocation.CurrentPeice == "Bishop")
+                {
+                    if ((startLocation.RowNumber + 1 == endLocation.RowNumber && startLocation.ColumnNumber + 1 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 2 == endLocation.RowNumber && startLocation.ColumnNumber + 2 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 3 == endLocation.RowNumber && startLocation.ColumnNumber + 3 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 4 == endLocation.RowNumber && startLocation.ColumnNumber + 4 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 5 == endLocation.RowNumber && endLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 6 == endLocation.RowNumber && startLocation.ColumnNumber + 6 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 7 == endLocation.RowNumber && startLocation.ColumnNumber + 7 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 8 == endLocation.RowNumber && startLocation.ColumnNumber + 8 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 1 == endLocation.RowNumber && startLocation.ColumnNumber - 1 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 2 == endLocation.RowNumber && startLocation.ColumnNumber - 2 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 3 == endLocation.RowNumber && startLocation.ColumnNumber - 3 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 4 == endLocation.RowNumber && startLocation.ColumnNumber - 4 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 5 == endLocation.RowNumber && startLocation.ColumnNumber - 5 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 6 == endLocation.RowNumber && startLocation.ColumnNumber - 6 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 7 == endLocation.RowNumber && startLocation.ColumnNumber - 7 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 8 == endLocation.RowNumber && startLocation.ColumnNumber - 8 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 1 == endLocation.RowNumber && startLocation.ColumnNumber + 1 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 2 == endLocation.RowNumber && startLocation.ColumnNumber + 2 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 3 == endLocation.RowNumber && startLocation.ColumnNumber + 3 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 4 == endLocation.RowNumber && startLocation.ColumnNumber + 4 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 5 == endLocation.RowNumber && startLocation.ColumnNumber + 5 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 6 == endLocation.RowNumber && startLocation.ColumnNumber + 6 == endLocation.ColumnNumber))
+                    {
+                        return true;
+
+                    }
+                    if ((startLocation.RowNumber - 7 == endLocation.RowNumber && startLocation.ColumnNumber + 7 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 8 == endLocation.RowNumber && startLocation.ColumnNumber + 8 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 1 == endLocation.RowNumber && startLocation.ColumnNumber - 1 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 2 == endLocation.RowNumber && startLocation.ColumnNumber - 2 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 3 == endLocation.RowNumber && startLocation.ColumnNumber - 3 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 4 == endLocation.RowNumber && startLocation.ColumnNumber - 4 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 5 == endLocation.RowNumber && startLocation.ColumnNumber - 5 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 6 == endLocation.RowNumber && startLocation.ColumnNumber - 6 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 7 == endLocation.RowNumber && startLocation.ColumnNumber - 7 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 8 == endLocation.RowNumber && startLocation.ColumnNumber - 8 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+
+                }
+                if (startLocation.CurrentPeice == "Queen")
+                {
+
+                    if ((startLocation.RowNumber + 1 == endLocation.RowNumber && startLocation.ColumnNumber + 1 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 2 == endLocation.RowNumber && startLocation.ColumnNumber + 2 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 3 == endLocation.RowNumber && startLocation.ColumnNumber + 3 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 4 == endLocation.RowNumber && startLocation.ColumnNumber + 4 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 5 == endLocation.RowNumber && endLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 6 == endLocation.RowNumber && startLocation.ColumnNumber + 6 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 7 == endLocation.RowNumber && startLocation.ColumnNumber + 7 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 8 == endLocation.RowNumber && startLocation.ColumnNumber + 8 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 1 == endLocation.RowNumber && startLocation.ColumnNumber - 1 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 2 == endLocation.RowNumber && startLocation.ColumnNumber - 2 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 3 == endLocation.RowNumber && startLocation.ColumnNumber - 3 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 4 == endLocation.RowNumber && startLocation.ColumnNumber - 4 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 5 == endLocation.RowNumber && startLocation.ColumnNumber - 5 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 6 == endLocation.RowNumber && startLocation.ColumnNumber - 6 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 7 == endLocation.RowNumber && startLocation.ColumnNumber - 7 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 8 == endLocation.RowNumber && startLocation.ColumnNumber - 8 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 1 == endLocation.RowNumber && startLocation.ColumnNumber + 1 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 2 == endLocation.RowNumber && startLocation.ColumnNumber + 2 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 3 == endLocation.RowNumber && startLocation.ColumnNumber + 3 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 4 == endLocation.RowNumber && startLocation.ColumnNumber + 4 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 5 == endLocation.RowNumber && startLocation.ColumnNumber + 5 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 6 == endLocation.RowNumber && startLocation.ColumnNumber + 6 == endLocation.ColumnNumber))
+                    {
+                        return true;
+
+                    }
+                    if ((startLocation.RowNumber - 7 == endLocation.RowNumber && startLocation.ColumnNumber + 7 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 8 == endLocation.RowNumber && startLocation.ColumnNumber + 8 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 1 == endLocation.RowNumber && startLocation.ColumnNumber - 1 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 2 == endLocation.RowNumber && startLocation.ColumnNumber - 2 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 3 == endLocation.RowNumber && startLocation.ColumnNumber - 3 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 4 == endLocation.RowNumber && startLocation.ColumnNumber - 4 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 5 == endLocation.RowNumber && startLocation.ColumnNumber - 5 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 6 == endLocation.RowNumber && startLocation.ColumnNumber - 6 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 7 == endLocation.RowNumber && startLocation.ColumnNumber - 7 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 8 == endLocation.RowNumber && startLocation.ColumnNumber - 8 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 1 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 2 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 3 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 4 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 5 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 6 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 7 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 8 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 1 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 2 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 3 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 4 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 5 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 6 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber + 7 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+
+                    }
+                    if ((startLocation.RowNumber + 8 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber - 1 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber - 2 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber - 3 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber - 4 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber - 5 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber - 6 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber - 7 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber - 8 == startLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber + 1 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber + 2 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber + 3 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber + 4 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber + 5 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber + 6 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber + 7 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber == endLocation.RowNumber && startLocation.ColumnNumber + 8 == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                }
+                if (startLocation.CurrentPeice == "Pawn")
+                {
+
+                    if ((startLocation.RowNumber + 1 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                    if ((startLocation.RowNumber - 1 == endLocation.RowNumber && startLocation.ColumnNumber == endLocation.ColumnNumber))
+                    {
+                        return true;
+                    }
+                }
+
+            
+
+            return false;
             }
         }
     }
 }
+
 

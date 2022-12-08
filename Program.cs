@@ -97,53 +97,77 @@ namespace Chess
 
                     Console.ReadLine();
                 }
+                    string player = "White";
                 myBoard.initalizboard();
-                Drawboard(myBoard);
-                Console.ReadKey();
-                myBoard.Movepiece();
-                Console.ReadKey();
-
-                //////////////////////////////Functions that need to be moved///////////////////////////////////////////////////
-                static void printBoard(Board myBoard)
+                while (true)
                 {
-                    /*  for (int i = 0; i < 10; ++i)
-                      {
-                          for (int j = 0; j < 1; ++j)
-                          {
-                              Console.Write(i * j + "\t");
-                          }
-                          Console.WriteLine();
-                      }
-      */
-                    for (int i = 0; i < myBoard.Size; i++)
-                    {
-                        for (int j = 0; j < myBoard.Size; j++)
-                        {
-                            Cell c = myBoard.theGrid[i, j];
+                    Drawboard(myBoard);
+                    Console.ReadKey();
+                    myBoard.Movepiece();
+                    Drawboard(myBoard);
+                    Console.ReadKey();
 
-                            if (c.CurrentlyOccupied == true)
-                            {
-                                Console.Write("| X");
-                            }
-                            else if (c.LegalNextMove == true)
-                            {
-                                Console.Write("| +");
-                            }
-                            else
-                            {
-                                Console.Write("|  ");
-                            }
-                        }
-                        Console.WriteLine("\n________________________");
+                    if (player == "White")
+                    {
+                        player = "Black";
+                        Console.WriteLine("Black teams turn");
+                        Console.WriteLine("press any key to continue");
+                        
+                        Console.ReadKey();
+                    }
+                    else if (player == "Black")
+                    {
+                        player = "White";
+                        Console.WriteLine("White teams turn");
+                        Console.WriteLine("press any key to continue");
+                        Console.ReadKey();
 
                     }
 
                 }
             }
+            //////////////////////////////Functions that need to be moved///////////////////////////////////////////////////
+            static void printBoard(Board myBoard)
+            {
+                /*  for (int i = 0; i < 10; ++i)
+                  {
+                      for (int j = 0; j < 1; ++j)
+                      {
+                          Console.Write(i * j + "\t");
+                      }
+                      Console.WriteLine();
+                  }
+  */
+                for (int i = 0; i < myBoard.Size; i++)
+                {
+                    for (int j = 0; j < myBoard.Size; j++)
+                    {
+                        Cell c = myBoard.theGrid[i, j];
+
+                        if (c.CurrentlyOccupied == true)
+                        {
+                            Console.Write("| X");
+                        }
+                        else if (c.LegalNextMove == true)
+                        {
+                            Console.Write("| +");
+                        }
+                        else
+                        {
+                            Console.Write("|  ");
+                        }
+                    }
+                    Console.WriteLine("\n________________________");
+
+                }
+
+            }
         }
+
 
         static void Drawboard(Board myBoard)
         {
+            Console.Clear();
             for (int i = 0; i < myBoard.Size; i++)
             {
                 for (int j = 0; j < myBoard.Size; j++)
@@ -161,13 +185,15 @@ namespace Chess
                         Console.Write("| Q");
                     if (c.CurrentPeice == "Knight")
                         Console.Write("| H");
-                    if(c.CurrentPeice=="")
+                    if (c.CurrentPeice == "")
                     {
                         Console.Write("|  ");
                     }
                 }
-                Console.WriteLine("\n________________________");
+                Console.WriteLine($"| {i + 1}\n________________________");
             }
+            Console.WriteLine("  1  2  3  4  5  6  7  8 ");
         }
     }
+
 }
