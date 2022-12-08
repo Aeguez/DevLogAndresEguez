@@ -97,14 +97,14 @@ namespace Chess
 
                     Console.ReadLine();
                 }
-                    string player = "White";
+                string player = "White";
                 myBoard.initalizboard();
                 while (true)
                 {
                     Drawboard(myBoard);
                     Console.ReadKey();
-                    myBoard.Movepiece();
-                    Drawboard(myBoard);
+                    myBoard.Movepiece(player);
+                    //Drawboard(myBoard);
                     Console.ReadKey();
 
                     if (player == "White")
@@ -112,7 +112,7 @@ namespace Chess
                         player = "Black";
                         Console.WriteLine("Black teams turn");
                         Console.WriteLine("press any key to continue");
-                        
+
                         Console.ReadKey();
                     }
                     else if (player == "Black")
