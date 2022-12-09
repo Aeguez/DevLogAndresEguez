@@ -1219,6 +1219,7 @@ namespace ChessBoard
 
 
         }
+        
 
         public void Drawboard()
         {
@@ -1917,7 +1918,9 @@ namespace ChessBoard
 
                 return false;
             }
+            
         }
+
     }
 }
 

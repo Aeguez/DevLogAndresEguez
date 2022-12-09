@@ -162,11 +162,11 @@ namespace Chess
                 {
                     Cell c = myBoard.theGrid[i, j];
 
-                    // if(c.TeamColor == "Black")
+                    if(c.TeamColor == "Black")
                     
-                    // {
-                    //     Console.ForegroundColor = ConsoleColor.DarkBlue;
-                    // }
+                     {
+                         Console.ForegroundColor = ConsoleColor.DarkBlue;
+                     }
 
                     if (c.CurrentPeice == "King")
                     {
@@ -201,9 +201,19 @@ namespace Chess
                 Console.WriteLine($"| {i + 1}\n________________________");
             }
             Console.WriteLine("  1  2  3  4  5  6  7  8 ");
+            
+            Console.ResetColor();
         }
+        
     }
 
 }
+
+
+
+// Give a introduction of the game 
+// Color idea
+// Loop invalid move
+// Create checks to limit moves
 
 
