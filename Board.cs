@@ -32,7 +32,7 @@ namespace ChessBoard
             string chessPiece = "";
             string colorChessPiece = "";
 
-            Console.WriteLine("Enter the piece:");
+            Console.WriteLine("Enter the piece: King, Queen, Bishop, Knight, Pawn");
             try
             {
                 chessPiece = Console.ReadLine();
@@ -42,7 +42,7 @@ namespace ChessBoard
             {
                 Console.WriteLine("Not valid.");
             }
-            Console.WriteLine("Enter the color of the piece:");
+            Console.WriteLine("Enter the color of the piece: White, Black");
             try
             {
                 colorChessPiece = Console.ReadLine();
@@ -1219,7 +1219,6 @@ namespace ChessBoard
 
 
         }
-        
 
         public void Drawboard()
         {
@@ -1228,69 +1227,88 @@ namespace ChessBoard
 
         public void Movepiece(string color)
         {
-            Console.WriteLine("choose your current pieces row number");
-            string userimputRow = Console.ReadLine();
-
-            Console.WriteLine("choose your current pieces Column number");
-            string userimputColumn = Console.ReadLine();
-            if (color == theGrid[Convert.ToInt32(userimputRow) - 1, Convert.ToInt32(userimputColumn) - 1].TeamColor)
+            bool check = true;
+            while (check)
             {
+                Console.WriteLine("Choose your current pieces row number");
+                string userimputRow = Console.ReadLine();
 
-
-
-                if (theGrid[Convert.ToInt32(userimputRow) - 1, Convert.ToInt32(userimputColumn) - 1].CurrentPeice != "") ;
+                Console.WriteLine("Choose your current pieces Column number");
+                string userimputColumn = Console.ReadLine();
+                if (color == theGrid[Convert.ToInt32(userimputRow) - 1, Convert.ToInt32(userimputColumn) - 1].TeamColor)
                 {
-                    if (theGrid[Convert.ToInt32(userimputRow) - 1, Convert.ToInt32(userimputColumn) - 1].TeamColor == "White") ;
-                    bool check = true;
-                    while (check)
+
+                  
+
+
+
+                    if (theGrid[Convert.ToInt32(userimputRow) - 1, Convert.ToInt32(userimputColumn) - 1].CurrentPeice != "") ;
                     {
-                        Console.WriteLine("choose your new row number");
-                        string NewuserimputRow = Console.ReadLine();
-                        Console.WriteLine("choose your new Column number");
-                        string NewuserimputColumn = Console.ReadLine();
-                        if (theGrid[Convert.ToInt32(NewuserimputRow) - 1, Convert.ToInt32(NewuserimputColumn) - 1].CurrentPeice == "King")
+                        if (theGrid[Convert.ToInt32(userimputRow) - 1, Convert.ToInt32(userimputColumn) - 1].TeamColor == "White") ;
+                        while (check)
                         {
 
-                            Console.WriteLine("winner!");
-                            Console.ReadKey();
-                        }
-                        if (isValidMove(theGrid[Convert.ToInt32(userimputRow) - 1, Convert.ToInt32(userimputColumn) - 1], theGrid[Convert.ToInt32(NewuserimputRow) - 1, Convert.ToInt32(NewuserimputColumn) - 1]))
-                        {
-                            if (theGrid[Convert.ToInt32(NewuserimputRow) - 1, Convert.ToInt32(NewuserimputColumn) - 1].CurrentPeice == "")
+                            Console.WriteLine("choose your new row number");
+                            string NewuserimputRow = Console.ReadLine();
+                            Console.WriteLine("choose your new Column number");
+                            string NewuserimputColumn = Console.ReadLine();
+                            if (isValidMove(theGrid[Convert.ToInt32(userimputRow) - 1, Convert.ToInt32(userimputColumn) - 1], theGrid[Convert.ToInt32(NewuserimputRow) - 1, Convert.ToInt32(NewuserimputColumn) - 1])){
+                            
+                            if (theGrid[Convert.ToInt32(NewuserimputRow) - 1, Convert.ToInt32(NewuserimputColumn) - 1].CurrentPeice == "King")
+                            //choose which king your killing
                             {
-                                theGrid[Convert.ToInt32(NewuserimputRow) - 1, Convert.ToInt32(NewuserimputColumn) - 1] = new Cell(Convert.ToInt32(NewuserimputRow) - 1, Convert.ToInt32(NewuserimputColumn) - 1, theGrid[Convert.ToInt32(userimputRow) - 1, Convert.ToInt32(userimputColumn) - 1].CurrentPeice, theGrid[Convert.ToInt32(userimputRow) - 1, Convert.ToInt32(userimputColumn) - 1].TeamColor);
-                                theGrid[Convert.ToInt32(userimputRow) - 1, Convert.ToInt32(userimputColumn) - 1] = new Cell(Convert.ToInt32(userimputRow) - 1, Convert.ToInt32(userimputColumn) - 1, "", "");
+                                if ((theGrid[Convert.ToInt32(NewuserimputRow) - 1, Convert.ToInt32(NewuserimputColumn) - 1].TeamColor != color))
+                                {
 
-                                check = false;
+                                    Console.WriteLine($"winner! {color}");
+                                    Console.ReadKey();
+
+                                    System.Environment.Exit(0);
+                                }
                             }
-                            else if (theGrid[Convert.ToInt32(NewuserimputRow) - 1, Convert.ToInt32(NewuserimputColumn) - 1].TeamColor != theGrid[Convert.ToInt32(userimputRow) - 1, Convert.ToInt32(userimputColumn) - 1].TeamColor)
-                            { //to do put removed piece in a list 
-                                theGrid[Convert.ToInt32(NewuserimputRow) - 1, Convert.ToInt32(NewuserimputColumn) - 1] = new Cell(Convert.ToInt32(NewuserimputRow) - 1, Convert.ToInt32(NewuserimputColumn) - 1, theGrid[Convert.ToInt32(userimputRow) - 1, Convert.ToInt32(userimputColumn) - 1].CurrentPeice, theGrid[Convert.ToInt32(userimputRow) - 1, Convert.ToInt32(userimputColumn) - 1].TeamColor);
+                            }
 
-                                theGrid[Convert.ToInt32(userimputRow) - 1, Convert.ToInt32(userimputColumn) - 1] = new Cell(Convert.ToInt32(userimputRow) - 1, Convert.ToInt32(userimputColumn) - 1, "", "");
-                                check = false;
 
-                            } //is cell ocupied
+                            if (isValidMove(theGrid[Convert.ToInt32(userimputRow) - 1, Convert.ToInt32(userimputColumn) - 1], theGrid[Convert.ToInt32(NewuserimputRow) - 1, Convert.ToInt32(NewuserimputColumn) - 1]))
+                            {
+                                if (theGrid[Convert.ToInt32(NewuserimputRow) - 1, Convert.ToInt32(NewuserimputColumn) - 1].CurrentPeice == "")
+                                {
+                                    theGrid[Convert.ToInt32(NewuserimputRow) - 1, Convert.ToInt32(NewuserimputColumn) - 1] = new Cell(Convert.ToInt32(NewuserimputRow) - 1, Convert.ToInt32(NewuserimputColumn) - 1, theGrid[Convert.ToInt32(userimputRow) - 1, Convert.ToInt32(userimputColumn) - 1].CurrentPeice, theGrid[Convert.ToInt32(userimputRow) - 1, Convert.ToInt32(userimputColumn) - 1].TeamColor);
+                                    theGrid[Convert.ToInt32(userimputRow) - 1, Convert.ToInt32(userimputColumn) - 1] = new Cell(Convert.ToInt32(userimputRow) - 1, Convert.ToInt32(userimputColumn) - 1, "", "");
 
-                            //is other team
-                            // move peice to location
-                            //conumes attacked piece
-                            //clear old location
+                                    check = false;
+                                }
+                                else if (theGrid[Convert.ToInt32(NewuserimputRow) - 1, Convert.ToInt32(NewuserimputColumn) - 1].TeamColor != theGrid[Convert.ToInt32(userimputRow) - 1, Convert.ToInt32(userimputColumn) - 1].TeamColor)
+                                { //to do put removed piece in a list 
+                                    theGrid[Convert.ToInt32(NewuserimputRow) - 1, Convert.ToInt32(NewuserimputColumn) - 1] = new Cell(Convert.ToInt32(NewuserimputRow) - 1, Convert.ToInt32(NewuserimputColumn) - 1, theGrid[Convert.ToInt32(userimputRow) - 1, Convert.ToInt32(userimputColumn) - 1].CurrentPeice, theGrid[Convert.ToInt32(userimputRow) - 1, Convert.ToInt32(userimputColumn) - 1].TeamColor);
+
+                                    theGrid[Convert.ToInt32(userimputRow) - 1, Convert.ToInt32(userimputColumn) - 1] = new Cell(Convert.ToInt32(userimputRow) - 1, Convert.ToInt32(userimputColumn) - 1, "", "");
+                                    check = false;
+
+                                } //is cell ocupied
+
+                                //is other team
+                                // move peice to location
+                                //conumes attacked piece
+                                //clear old location
+
+
+                            }
+                            else if (color != theGrid[Convert.ToInt32(userimputRow) - 1, Convert.ToInt32(userimputColumn) - 1].TeamColor)
+                            {
+                                Console.WriteLine("invalid move");
+
+                            }
+
+
+
 
 
                         }
-                        else if (color != theGrid[Convert.ToInt32(userimputRow) - 1, Convert.ToInt32(userimputColumn) - 1].TeamColor)
-                        {
-                            Console.WriteLine("invalid move");
-                        }
-
-
-
-
-
                     }
                 }
             }
+
             bool isValidMove(Cell startLocation, Cell endLocation)
             {
                 if (startLocation.CurrentPeice == "King")
@@ -1918,9 +1936,6 @@ namespace ChessBoard
 
                 return false;
             }
-            
         }
-
     }
 }
-
