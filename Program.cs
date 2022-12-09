@@ -75,13 +75,16 @@ namespace Chess
             }
 
 
-            Console.WriteLine("All tests passed.");
+            Console.WriteLine("Welcome to Chess, victory is simple, KILL the opposite teams KING!");
 
             {
                 Board myBoard = new Board(8);
 
+ void  help (){
+                Console.WriteLine("Do you need help? if so Type Yes");
+                Console.WriteLine();
+                Console.WriteLine();
 
-                Console.WriteLine("Do you need help?");
 
 
                 string response = Console.ReadLine();
@@ -97,15 +100,20 @@ namespace Chess
 
                     Console.ReadLine();
                 }
+                }
                 string player = "White";
                 myBoard.initalizboard();
+                Console.WriteLine("White team goes first. the team is located on the top side of the board");
+                Console.WriteLine();
+                Console.WriteLine();
+
                 while (true)
                 {
+                    help();
                     Drawboard(myBoard);
-                    Console.ReadKey();
                     myBoard.Movepiece(player);
                     Drawboard(myBoard);
-                    Console.ReadKey();
+                    
 
                     if (player == "White")
                     {
@@ -113,54 +121,20 @@ namespace Chess
                         Console.WriteLine("Black teams turn");
                         Console.WriteLine("press any key to continue");
 
-                        Console.ReadKey();
+                        
                     }
                     else if (player == "Black")
                     {
                         player = "White";
                         Console.WriteLine("White teams turn");
                         Console.WriteLine("press any key to continue");
-                        Console.ReadKey();
+                        
 
                     }
                 }
             }
-            //////////////////////////////Functions that need to be moved///////////////////////////////////////////////////
-            static void printBoard(Board myBoard)
-            {
-                /*  for (int i = 0; i < 10; ++i)
-                  {
-                      for (int j = 0; j < 1; ++j)
-                      {
-                          Console.Write(i * j + "\t");
-                      }
-                      Console.WriteLine();
-                  }
-  */
-                for (int i = 0; i < myBoard.Size; i++)
-                {
-                    for (int j = 0; j < myBoard.Size; j++)
-                    {
-                        Cell c = myBoard.theGrid[i, j];
+           
 
-                        if (c.CurrentlyOccupied == true)
-                        {
-                            Console.Write("| X");
-                        }
-                        else if (c.LegalNextMove == true)
-                        {
-                            Console.Write("| +");
-                        }
-                        else
-                        {
-                            Console.Write("|  ");
-                        }
-                    }
-                    Console.WriteLine("\n________________________");
-
-                }
-
-            }
         }
 
 
@@ -172,15 +146,15 @@ namespace Chess
                 for (int j = 0; j < myBoard.Size; j++)
                 {
                     Cell c = myBoard.theGrid[i, j];
-                  /*  if(c.TeamColor=="Black")
-                    {
-                        Console.ForegroundColor=ConsoleColor.DarkBlue;
-                    
-                    }
-                    else if (c.TeamColor=="White")
-                    {
+                    /*  if(c.TeamColor=="Black")
+                      {
+                          Console.ForegroundColor=ConsoleColor.DarkBlue;
 
-                    }*/
+                      }
+                      else if (c.TeamColor=="White")
+                      {
+
+                      }*/
 
                     if (c.CurrentPeice == "King")
                         Console.Write("| K");
@@ -197,13 +171,42 @@ namespace Chess
                     if (c.CurrentPeice == "")
                     {
                         Console.Write("|  ");
-                    
+
                     }
                 }
                 Console.WriteLine($"| {i + 1}\n________________________");
             }
             Console.WriteLine("  1  2  3  4  5  6  7  8 ");
         }
-    }
 
+
+
+        static void printBoard(Board myBoard)
+        {
+
+            for (int i = 0; i < myBoard.Size; i++)
+            {
+                for (int j = 0; j < myBoard.Size; j++)
+                {
+                    Cell c = myBoard.theGrid[i, j];
+
+                    if (c.CurrentlyOccupied == true)
+                    {
+                        Console.Write("| X");
+                    }
+                    else if (c.LegalNextMove == true)
+                    {
+                        Console.Write("| +");
+                    }
+                    else
+                    {
+                        Console.Write("|  ");
+                    }
+                }
+                Console.WriteLine("\n________________________");
+
+            }
+
+        }
+    }
 }
