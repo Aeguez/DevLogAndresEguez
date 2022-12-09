@@ -146,15 +146,11 @@ namespace Chess
                 for (int j = 0; j < myBoard.Size; j++)
                 {
                     Cell c = myBoard.theGrid[i, j];
-                    /*  if(c.TeamColor=="Black")
-                      {
-                          Console.ForegroundColor=ConsoleColor.DarkBlue;
-
-                      }
-                      else if (c.TeamColor=="White")
-                      {
-
-                      }*/
+                   if(c.TeamColor == "Black")
+                    
+                     {
+                         Console.ForegroundColor = ConsoleColor.DarkBlue;
+                     }
 
                     if (c.CurrentPeice == "King")
                         Console.Write("| K");
@@ -177,6 +173,8 @@ namespace Chess
                 Console.WriteLine($"| {i + 1}\n________________________");
             }
             Console.WriteLine("  1  2  3  4  5  6  7  8 ");
+        
+            Console.ResetColor();
         }
 
 

@@ -1253,6 +1253,8 @@ namespace ChessBoard
                             string NewuserimputRow = Console.ReadLine();
                             Console.WriteLine("choose your new Column number");
                             string NewuserimputColumn = Console.ReadLine();
+                            if (isValidMove(theGrid[Convert.ToInt32(userimputRow) - 1, Convert.ToInt32(userimputColumn) - 1], theGrid[Convert.ToInt32(NewuserimputRow) - 1, Convert.ToInt32(NewuserimputColumn) - 1])){
+                            
                             if (theGrid[Convert.ToInt32(NewuserimputRow) - 1, Convert.ToInt32(NewuserimputColumn) - 1].CurrentPeice == "King")
                             //choose which king your killing
                             {
@@ -1264,6 +1266,7 @@ namespace ChessBoard
 
                                     System.Environment.Exit(0);
                                 }
+                            }
                             }
 
 
