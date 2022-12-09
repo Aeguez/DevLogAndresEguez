@@ -33,7 +33,7 @@ namespace ChessBoard
             string chessPiece = "";
             string colorChessPiece = "";
 
-            Console.WriteLine("Enter the piece:");
+            Console.WriteLine("Enter the piece: King, Queen, Bishop, Knight, Pawn");
             try
             {
                 chessPiece = Console.ReadLine();
@@ -43,7 +43,7 @@ namespace ChessBoard
             {
                 Console.WriteLine("Not valid.");
             }
-            Console.WriteLine("Enter the color of the piece:");
+            Console.WriteLine("Enter the color of the piece: King, Queen, Bishop, Knight, Pawn");
             try
             {
                 colorChessPiece = Console.ReadLine();

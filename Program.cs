@@ -76,30 +76,32 @@ namespace Chess
 
 
             Console.WriteLine("Welcome to Chess, victory is simple, KILL the opposite teams KING!");
+            Console.WriteLine();
+            Console.WriteLine();
 
             {
                 Board myBoard = new Board(8);
 
- void  help (){
-                Console.WriteLine("Do you need help? if so Type Yes");
-                Console.WriteLine();
-                Console.WriteLine();
-
-
-
-                string response = Console.ReadLine();
-
-                while (response == "Yes")
+                void help()
                 {
+                    Console.WriteLine("Do you need help? if so Type Yes");
+                    Console.WriteLine();
 
-                    myBoard.setCurrentCell();
-                    myBoard.MarkNextLegalMove();
-                    response = Console.ReadLine();
 
-                    printBoard(myBoard);
 
-                    Console.ReadLine();
-                }
+                    string response = Console.ReadLine();
+
+                    while (response == "Yes")
+                    {
+
+                        myBoard.setCurrentCell();
+                        myBoard.MarkNextLegalMove();
+                        response = Console.ReadLine();
+
+                        printBoard(myBoard);
+
+                        Console.ReadLine();
+                    }
                 }
                 string player = "White";
                 myBoard.initalizboard();
@@ -113,7 +115,7 @@ namespace Chess
                     Drawboard(myBoard);
                     myBoard.Movepiece(player);
                     Drawboard(myBoard);
-                    
+
 
                     if (player == "White")
                     {
@@ -121,19 +123,19 @@ namespace Chess
                         Console.WriteLine("Black teams turn");
                         Console.WriteLine("press any key to continue");
 
-                        
+
                     }
                     else if (player == "Black")
                     {
                         player = "White";
                         Console.WriteLine("White teams turn");
                         Console.WriteLine("press any key to continue");
-                        
+
 
                     }
                 }
             }
-           
+
 
         }
 
@@ -146,34 +148,42 @@ namespace Chess
                 for (int j = 0; j < myBoard.Size; j++)
                 {
                     Cell c = myBoard.theGrid[i, j];
-                   if(c.TeamColor == "Black")
-                    
-                     {
-                         Console.ForegroundColor = ConsoleColor.DarkBlue;
-                     }
+                    var Color = c.TeamColor;
+                    Console.Write("| ");
+                   
+                    if (c.TeamColor == "Black")
+
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkBlue;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
 
                     if (c.CurrentPeice == "King")
-                        Console.Write("| K");
+                        Console.Write("K");
                     if (c.CurrentPeice == "Rook")
-                        Console.Write("| R");
+                        Console.Write("R");
                     if (c.CurrentPeice == "Pawn")
-                        Console.Write("| P");
+                        Console.Write("P");
                     if (c.CurrentPeice == "Bishop")
-                        Console.Write("| B");
+                        Console.Write("B");
                     if (c.CurrentPeice == "Queen")
-                        Console.Write("| Q");
+                        Console.Write("Q");
                     if (c.CurrentPeice == "Knight")
-                        Console.Write("| H");
+                        Console.Write("H");
                     if (c.CurrentPeice == "")
                     {
-                        Console.Write("|  ");
+                        Console.Write(" ");
 
                     }
                 }
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine($"| {i + 1}\n________________________");
             }
             Console.WriteLine("  1  2  3  4  5  6  7  8 ");
-        
+
             Console.ResetColor();
         }
 
